@@ -4,8 +4,8 @@ import os
 import pandas as pd
 
 #Abre bd
-entidades_s= pd.read_csv("https://raw.githubusercontent.com/fdealbam/censo2020/main/zm4020.csv")#, encoding= "Latin-1")
-entidades_p= pd.read_csv("https://raw.githubusercontent.com/fdealbam/censo2020/main/zm4020percent.csv")#, encoding="Latin-1")
+entidades_s= pd.read_csv("https://raw.githubusercontent.com/fdealbam/censo2020/main/zm42020.csv")#, encoding= "Latin-1")
+entidades_p= pd.read_csv("https://raw.githubusercontent.com/fdealbam/censo2020/main/zm42020percent.csv")#, encoding="Latin-1")
 
 #pormunicipio_fa.replace(to_replace ="*",
 #                 value =0, inplace=True)
@@ -16,7 +16,7 @@ df = entidades_s[entidades_s.NOM_ZM == "Valle de México"]
 df_p = entidades_p[entidades_p.NOM_ZM == "Valle de México"]
 
 
-noment = df.iloc[0]["NOM_ENT"]
+noment = df.iloc[0]["NOM_ZM"]
 
 #-------------------------------------Pob Total
 ptotal_s                                             = df.POBTOT.sum()      # población total  
