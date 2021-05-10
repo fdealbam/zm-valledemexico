@@ -4,16 +4,16 @@ import os
 import pandas as pd
 
 #Abre bd
-entidades_s= pd.read_csv("https://raw.githubusercontent.com/fdealbam/censo2020/main/entidades2020.csv")#, encoding= "Latin-1")
-entidades_p= pd.read_csv("https://raw.githubusercontent.com/fdealbam/censo2020/main/entidades2020percent.csv")#, encoding="Latin-1")
+entidades_s= pd.read_csv("https://raw.githubusercontent.com/fdealbam/censo2020/main/zm4020.csv")#, encoding= "Latin-1")
+entidades_p= pd.read_csv("https://raw.githubusercontent.com/fdealbam/censo2020/main/zm4020percent.csv")#, encoding="Latin-1")
 
 #pormunicipio_fa.replace(to_replace ="*",
 #                 value =0, inplace=True)
 
 
 # Falta un identificador de la base 1) entidad 2)mpios
-df = entidades_s[entidades_s.ENTIDAD == 19]
-df_p = entidades_p[entidades_p.ENTIDAD == 19]
+df = entidades_s[entidades_s.NOM_ZM == "Valle de México"]
+df_p = entidades_p[entidades_p.NOM_ZM == "Valle de México"]
 
 
 noment = df.iloc[0]["NOM_ENT"]
