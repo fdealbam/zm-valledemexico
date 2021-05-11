@@ -1,4 +1,5 @@
 # ZM Valle de México 
+# Valle de México 
 
 import os
 import pandas as pd
@@ -1748,19 +1749,18 @@ body = html.Div([
     dbc.Row(
            [   #mapa de la entidad 
                
-            dbc.Col(dbc.Button(dbc.CardImg(src="https://github.com/fdealbam/0entrada/blob/cd70e780b421392cf892dc250a7523c792c9d678/application/static/1zmcdmx.png?raw=true"),
-                         
+            dbc.Col(dbc.Button(dbc.CardImg(src="https://github.com/fdealbam/0entrada/blob/a2918fe6d5b4dd1248bb5e2d30ef1532421034e4/1zmcdmx.png?raw=true"),
                                style={"background-color": "transparent"}),
-                      md={"size": 7,},
+                      md={"size": 3,},
                       style= {
                          
                           "margin-top": "-32px", 
                              "display": "block", "position": "relative",
                               "inline": "block",
                               "column-break-inside": "avoid",
-                              "margin-left": "350px",
-                              "margin-top": "-50px",
-                              "margin-bottom": "-230px"
+                              "margin-left": "480px",
+                              "margin-top": "-40px",
+                              "margin-bottom": "-200px"
                              }),
 
                       ], justify= "start"), 
