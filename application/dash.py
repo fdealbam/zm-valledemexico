@@ -1,12 +1,11 @@
-# ZM Valle de México 
 # Valle de México 
 
 import os
 import pandas as pd
 
 #Abre bd
-entidades_s= pd.read_csv("https://raw.githubusercontent.com/fdealbam/censo2020/main/zm42020.csv")#, encoding= "Latin-1")
-entidades_p= pd.read_csv("https://raw.githubusercontent.com/fdealbam/censo2020/main/zm42020percent.csv")#, encoding="Latin-1")
+entidades_s= pd.read_csv("https://raw.githubusercontent.com/fdealbam/censo2020/main/zm42020_2.csv")#, encoding= "Latin-1")
+entidades_p= pd.read_csv("https://raw.githubusercontent.com/fdealbam/censo2020/main/zm42020percent_2.csv")#, encoding="Latin-1")
 
 #pormunicipio_fa.replace(to_replace ="*",
 #                 value =0, inplace=True)
@@ -41,7 +40,12 @@ poblacion15ymasconposbasica_s                        = df.P18YM_PB.sum()    # Po
 
 #-------------------------------------Discapacidad|
 condiscapacidad_s                                    = df.PCON_DISC.sum()    # Población con discapacidad
- 
+condiscapacidadparamoverse_s                         = df.PCDISC_MOT.sum()    # Población con discapacidad caminar subir o bajar
+condiscapacidadparaver_s                             = df.PCDISC_VIS.sum()    # Población con discapacidad para ver aun con lentes
+condiscapacidadparahablar_s                          = df.PCDISC_LENG.sum()    # Población con discapacidad para hablar 
+condiscapacidadparaoir_s                             = df.PCDISC_AUD.sum()    # Población con discapacidad para oir
+
+
 #Edad 
 de60añosymas_s                                       = df.P_60YMAS.sum()     # población de 60 y más          
 de15a64años_s                                        = df.POB15_64.sum()     # población de 15 a 64 años         
@@ -129,7 +133,12 @@ derechopriv_p                                        = df_p['PAFIL_IPRIV_%'].sum
 
 #---------------------------------Discapacidad
 condiscapacidad_p                                    = df_p['PCON_DISC_%'].sum()
- 
+condiscapacidadparamoverse_p                         = (df_p['PCDISC_MOT_%'].sum()).round(1)    # Población con discapacidad caminar subir o bajar
+condiscapacidadparaver_p                             = (df_p['PCDISC_VIS_%'].sum()).round(1)    # Población con discapacidad para ver aun con lentes
+condiscapacidadparahablar_p                          = (df_p['PCDISC_LENG_%'].sum()).round(1)    # Población con discapacidad para hablar 
+condiscapacidadparaoir_p                             = (df_p['PCDISC_AUD_%'].sum()).round(1)    # Población con discapacidad para oir
+
+
 #Edad 
 de60añosymas_p                                       = df_p['P_60YMAS_%'].sum()              
 de15a64años_p                                        = df_p['POB15_64_%'].sum()              
@@ -987,12 +996,12 @@ card_migra1 = dbc.Card(
                     style={'textAlign': 'left',
                            "color": "white",
                             "height": "7px",
-                          "background-color": "#9cd9e0"}),
+                          "background-color": "#0097A7"}),
             html.H5(f"{int(poblacionnacidaenotraentidad_s):,}", 
                     style={'textAlign': 'left',
                             "height": "7px",
                            "color": "white",
-                          "background-color": "#9cd9e0"}),
+                          "background-color": "#0097A7"}),
             html.H2([(poblacionnacidaenotraentidad_p),"%"],#"64%", 
                   style={'textAlign': 'right',
                          "color": "white",
@@ -1005,7 +1014,7 @@ card_migra1 = dbc.Card(
                             style={"width": "48rem", 
                                       "border": "0",
                                        #"height": "10px",
-                                      "background-color": "#9cd9e0",
+                                      "background-color": "#0097A7",
                                   },)
 
 card_migra2 = dbc.Card(
@@ -1166,6 +1175,7 @@ card_v_hog_cens = dbc.Card(
 #Seccion 9. Variables de DISCAPACIDAD
 ##########################################################################
 
+
 row1 = html.Tr([dbc.Alert("Población con discapacidad", color="#E0E0E0",), 
                 html.Td(f"{int(condiscapacidad_s):,}"),
                 dbc.Alert([(condiscapacidad_p),"%"],# "4%",
@@ -1175,17 +1185,8 @@ row1 = html.Tr([dbc.Alert("Población con discapacidad", color="#E0E0E0",),
                         "color": "#BA68C8",       
                         })])
 
-#Ya no está
-#row2 = html.Tr([dbc.Alert("Poblacion con discapacidad derechohabiente", color="#E0E0E0",), 
-#                html.Td("19,172,575"),
-#                dbc.Alert("59%", color="light",
-#                        style={"font-size": "35px",
-#                        "font-weight": 'bold',
-#                        "color": "#BA68C8",       
-#                        })])
-#
-table_body = [html.Tbody([row1, #row2,
-                         ])]
+
+table_body = [html.Tbody([row1 ])]
 
 
 card_v_discapacidad = dbc.Card(
@@ -1208,6 +1209,103 @@ card_v_discapacidad = dbc.Card(
                           "border": "0",
                           "fill" : "orange"},
         )
+
+
+###################Recuadro de discapacidad
+
+recuadrodiscapacidad = dbc.Card(
+    dbc.CardBody(
+        [
+         # discapacidad para caminar                      
+         #dbc.Button((["", html.H3(className="fab fa-accesible-icon", style={"color": "black",
+         #                                                        "background-color": "light"}),
+
+         dbc.Button((["", html.H3(dbc.CardImg(src= "https://raw.githubusercontent.com/fdealbam/nuevoleon/main/application/static/accessible-icon-brands.svg?raw=true", 
+                                style={"color": "purple",
+                                       "height" :"25px",
+                                        "weight" :"15px",
+                                      "background-clor": "light"})),            
+                      
+                 html.H6("Caminar",
+                        style={"color":"black",
+                               "font-size":10,
+                                "background-color": "light"}),
+                 html.H4([(condiscapacidadparamoverse_p),"%"],#"97%",
+                        style={"color":"#BA68C8",
+                                "background-color": "light"}),
+                 html.P(f"{int(condiscapacidadparamoverse_s):,}", style={"font-size":10}),                      
+        ]),style={ "background-color": "light",
+                  "weight" :"15px",}),
+
+
+         # discapacidad para ver                      
+         dbc.Button((["", html.H3(dbc.CardImg(src= "https://raw.githubusercontent.com/fdealbam/nuevoleon/main/application/static/blind-duotone.svg?raw=true",
+                                style={"color": "black",
+                                       "height" :"25px",
+                                     
+                                      "background-clor": "light"})),            
+                 html.H6("Ver", 
+                         style={"color":"black",
+                                 "font-size":10,
+                                "background-color": "light"}),
+                 html.H4([(condiscapacidadparaver_p),"%"],#"97%",  
+                         style={"color":"#BA68C8",
+                                "background-color": "light"}),
+                 html.P(f"{int(condiscapacidadparaver_s):,}",  style={"font-size":10}),                      
+        ]),style={ "background-color": "light",
+                  "weight" :"20px",}),
+
+         # discapacidad para hablar                      
+         dbc.Button((["", html.H3(dbc.CardImg(src= "https://raw.githubusercontent.com/fdealbam/nuevoleon/main/application/static/comment-slash-duotone.svg?raw=true",
+                                style={"color": "black",
+                                       "height" :"25px",
+                                     
+                                      "background-clor": "light"})),            
+
+                 html.H6("Hablar",
+                         style={"color":"black",
+                                 "font-size":10,
+                                "background-color": "light"}),
+                 html.H4([(condiscapacidadparahablar_p),"%"],#"97%",
+                        style={"color":"#BA68C8",
+                                "background-color": "light"}),# 
+                 html.P(f"{int(condiscapacidadparahablar_s):,}", style={"font-size":10}),                      
+        ]),style={ "background-color": "light",
+                  "weight" :"20px",}),
+            
+         # discapacidad para oir                      
+         dbc.Button((["", html.H3(dbc.CardImg(src= "https://raw.githubusercontent.com/fdealbam/nuevoleon/main/application/static/deaf-duotone.svg?raw=true",
+                                style={"color": "black",
+                                       "height" :"25px",
+                                     
+                                      "background-clor": "light"})),            
+                 html.H6("Oir",
+                        style={"color":"black",
+                                "font-size":10,
+                                "background-color": "light"}),
+                 html.H4([(condiscapacidadparaoir_p),"%"],#"97%",
+                        style={"color":"#BA68C8",
+                                "background-color": "light"}),
+                 html.P(f"{int(condiscapacidadparaoir_s):,}", style={"font-size":10}),                      
+        ]),style={ "background-color": "light",
+                  "weight" :"20px",}),
+        
+     
+        ]), style={"width": "51rem",
+                   "margin-top": "-40.5px",
+                   "margin-left": "-25px",
+                   "margin-right": "-25px",
+                   
+                   "border": "0",
+                   "background-color": "light",
+                  "outline": "white"
+                #  "border-width": "1px"
+                  })
+
+
+        
+
+
 
 
 ##########################################################################
@@ -1368,16 +1466,14 @@ card_economia_discap = dbc.Card(
                                       "background-color": "#6A1B9A"}),
             html.Br(),
             html.Br(),
-            
-            dbc.ButtonGroup(html.Span([
-                html.H1(className="fas fa-user-minus", 
-                        style={"background-color": "#6A1B9A",
-                               "color":"white",
-                               "font-size": "110px",
-                              #'size':'80px',
-                              'textAlign': 'center',
-                               #'margin-left':'10px'
-                              }),]),),
+
+
+            dbc.ButtonGroup(([
+                        "", html.H3(dbc.CardImg(src= "https://raw.githubusercontent.com/fdealbam/nuevoleon/main/application/static/user-unlock-solid.svg?raw=true", #className="info",
+                                style={"color": "light",
+                                       #"height" :"25px",
+                                      "font-size": "110px", 
+                                      "background-clor": "#6A1B9A"}))])),
             html.Br(),
             html.Br(),
             
@@ -1825,7 +1921,7 @@ body = html.Div([
     
 
     
-    ################## SECCION 1 (pag1)_VARIABLES DE POBLACION
+    ################## VARIABLES DE POBLACION
     dbc.Row([
         dbc.Col(dbc.Card(card), sm={  "offset": 1, }),#Variables Vivienda
         dbc.Col(dbc.Card(card2),                      #población total
@@ -1894,7 +1990,7 @@ body = html.Div([
                      })
     ]),
     
-    ################## SECCION 2 (pag1)_VARIABLES DE VIVIENDA
+    ################## VARIABLES DE VIVIENDA
     dbc.Row([
        
   
@@ -1907,7 +2003,7 @@ body = html.Div([
 
 
     
-    ################## SECCION 4 (pag1)_VARIABLES DE INTERNET
+    ################## VARIABLES DE INTERNET
 
     dbc.Row([
         dbc.Col(dbc.Card(card2p3, color="green"),
@@ -1920,7 +2016,7 @@ body = html.Div([
     
 
     
-    ################## SECCION 5 (pag1)__VARIABLES DE MIGRACION
+    ##################  VARIABLES DE MIGRACION
      
     dbc.Row([
         dbc.Col(dbc.Card(card_v_migracion), #cuadros azules
@@ -1935,18 +2031,6 @@ body = html.Div([
     
     
     #############################>>>>>>> II <<<<<<<<<#############################
-    
-    ################## SECCION 1 (pag 2)__VARIABLES DE DISCAPACIDAD
-    dbc.Row([
-        dbc.Col(dbc.Card(card_v_discapacidad, #color="#FBFBFB", outline=True,
-                         #inverse=False
-                        ),
-         sm={"offset": 1, }),
-         
-     ], no_gutters= True, justify= "start",
-     className="blockquote",
-     ),
-
     
  
     
@@ -1964,7 +2048,8 @@ body = html.Div([
     
  
 
-    # ejemplo card in card
+    ################## VARIABLES DE RELIGION      
+
     dbc.Row([
         dbc.Col(dbc.Card(card_v_religionAA),
                 sm={  "offset": 1, }),
@@ -1973,9 +2058,8 @@ body = html.Div([
      ),
     
     
-    #############################>>>>>>> III <<<<<<<<<#############################
     
-    ################## SECCION 1 (3a pag)__VARIABLES DE EDUCACION      
+    ################## VARIABLES DE EDUCACION      
     dbc.Row([
         dbc.Col(dbc.Card(card_v_edu, #color="#FBFBFB", outline=True,
                          #inverse=False
@@ -1986,7 +2070,33 @@ body = html.Div([
      ),
     
     
-    ################## SECCION 2 (3a pag)__VARIABLES DE DERECHOHABIENCIA
+    ################## VARIABLES DE DISCAPACIDAD
+    dbc.Row([
+        dbc.Col(dbc.Card(card_v_discapacidad, #color="#FBFBFB", outline=True,
+                         #inverse=False
+                        ),
+         sm={"offset": 1, }),
+         
+     ], no_gutters= True, justify= "start",
+     className="blockquote",
+     ),
+
+    ################## VARIABLES DE discapacidad en recuadro
+
+    dbc.Row([
+        dbc.Col(dbc.Card(recuadrodiscapacidad, color="aqua"),
+         sm={  "offset": 1, }),
+    
+     ], no_gutters= True, justify= "start",
+     className="blockquote",
+     ),
+
+    html.Br(),
+    
+    
+
+    
+    ##################  VARIABLES DE DERECHOHABIENCIA
     dbc.Row([
         dbc.Col(dbc.Card(card_v_derechohab, #color="#FBFBFB", outline=True,
                          #inverse=False
