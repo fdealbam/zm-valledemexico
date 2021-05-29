@@ -1862,9 +1862,9 @@ body = html.Div([
                       ], justify= "start"), 
                
                
-               dbc.Col(dbc.CardImg(src="https://github.com/fdealbam/CamaraDiputados/blob/main/application/static/logocamara.jfif?raw=true",
-                        ),width ={ "size": 1,  "offset": 1,
-                                  "height": "5px"}),
+#               dbc.Col(dbc.CardImg(src="https://github.com/fdealbam/CamaraDiputados/blob/main/application/static/logocamara.jfif?raw=true",
+#                        ),width ={ "size": 1,  "offset": 1,
+#                                  "height": "5px"}),
                dbc.Col(html.H4("Reporte estadístico de la zona metropolitana",
                         style={'offset' : 0, "size": 5,
                                
@@ -2121,22 +2121,22 @@ body = html.Div([
     html.Br(),
     html.Br(),
     
-    dbc.Row([
-                                    #https://github.com/fdealbam/CamaraDiputados/blob/b11ef31e8e0f73e1a4a06ce60402563e1bd0122e/application/static/logocamara.jfif
-           dbc.Col(dbc.CardImg(src="https://github.com/fdealbam/CamaraDiputados/blob/main/application/static/logocamara.jfif?raw=true"),
-                        width=5, md={'size': 1,  "offset": 3, }),
-            
-           dbc.Col(html.H6(" S e c r e t a r í a   G e n e r a l," 
-                           " Secretaría de Servicios Parlamentarios, "
-                           " México, 2021 "),
-                  width={'size': 5, 'offset': 0}),
-               ], justify="start",),
-     dbc.Row([    
-           dbc.Col(html.H5([dbc.Badge("Equipo responsable", 
-                          href="https://innovation-learning.herokuapp.com/",
-                                     )]),
-                  width={'size': 3,  "offset": 4}),
-                       ], justify="start",),
+#    dbc.Row([
+#                                    #https://github.com/fdealbam/CamaraDiputados/blob/b11ef31e8e0f73e1a4a06ce60402563e1bd0122e/application/static/logocamara.jfif
+#           dbc.Col(dbc.CardImg(src="https://github.com/fdealbam/CamaraDiputados/blob/main/application/static/logocamara.jfif?raw=true"),
+#                        width=5, md={'size': 1,  "offset": 3, }),
+#            
+#           dbc.Col(html.H6(" S e c r e t a r í a   G e n e r a l," 
+#                           " Secretaría de Servicios Parlamentarios, "
+#                           " México, 2021 "),
+#                  width={'size': 5, 'offset': 0}),
+#               ], justify="start",),
+#     dbc.Row([    
+#           dbc.Col(html.H5([dbc.Badge("Equipo responsable", 
+#                          href="https://innovation-learning.herokuapp.com/",
+#                                     )]),
+#                  width={'size': 3,  "offset": 4}),
+#                       ], justify="start",),
     html.Br(),
     html.Br(),
     html.Br(),
