@@ -1862,8 +1862,8 @@ body = html.Div([
                       ], justify= "start"), 
                
                
-#               dbc.Col(dbc.CardImg(src="https://github.com/fdealbam/CamaraDiputados/blob/main/application/static/logocamara.jfif?raw=true",
-#                        ),width ={ "size": 1,  "offset": 1,
+#               dbc.Col(dbc.CardImg(src="https://github.com/fdealbam/0entrada/blob/main/application/static/logo%20cesopycamara1.PNG?raw=true"),
+                        width=5, md={'size': 3,  "offset": 6,
 #                                  "height": "5px"}),
                dbc.Col(html.H4("Reporte estadístico de la zona metropolitana",
                         style={'offset' : 0, "size": 5,
